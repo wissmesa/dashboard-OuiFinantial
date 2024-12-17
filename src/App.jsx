@@ -1,9 +1,12 @@
 import * as React from 'react';
-import { extendTheme, styled } from '@mui/material/styles';
+import { extendTheme,
+  //  styled
+   }
+    from '@mui/material/styles';
 import { AppProvider } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
 import { PageContainer } from '@toolpad/core/PageContainer';
-import Grid from '@mui/material/Grid2';
+// import Grid from '@mui/material/Grid2';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import ListAltIcon from '@mui/icons-material/ListAlt';
@@ -122,12 +125,12 @@ function useDemoRouter(initialPath) {
   return router;
 }
 
-const Skeleton = styled('div')(({ theme, height }) => ({
-  backgroundColor: theme.palette.action.hover,
-  borderRadius: theme.shape.borderRadius,
-  height,
-  content: '" "',
-}));
+// const Skeleton = styled('div')(({ theme, height }) => ({
+//   backgroundColor: theme.palette.action.hover,
+//   borderRadius: theme.shape.borderRadius,
+//   height,
+//   content: '" "',
+// }));
 
 
 

@@ -1,0 +1,12 @@
+.boton{
+    background-color: red;
+    position: absolute;
+    /* display: flex
+; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    margin-left: 15%;
+    margin-top: 12%;
+    height: 3rem;
+    border-radius: 14px;
+}
