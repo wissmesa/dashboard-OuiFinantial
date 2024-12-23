@@ -2,27 +2,30 @@
 
     <script>
 
-        function createIframe(src, width, height, id, title) {
-            var container = document.getElementById("container-video-1")
-
+        function createIframe(src, width, height, id, containerID) {
+            var container = document.getElementById(containerID)
             // CREAR DOCUMENTO
             var divToBeClicked = document.createElement('div');
-            var iframe         = document.createElement('iframe');
+            var iframe = document.createElement('iframe');
             //STYLES
             var widthDispositive = window.innerWidth; // Obtiene el ancho de la pantalla
             var aspectRatio = 16 / 9;     // Relación de aspecto 16:9
             var heightCalculated = widthDispositive / aspectRatio;
 
-            divToBeClicked.id = 'divWrapped'
+            divToBeClicked.id = `child-${containerID}`
             divToBeClicked.style.position = 'absolute'
             divToBeClicked.style.backgroundColor = 'blue'
             divToBeClicked.style.height = '400px'
             divToBeClicked.style.width = '100%'
+            divToBeClicked.onclick = () => {
+                var yt = document.getElementById(id);
+                var player = yt.contentWindow;
+                player.postMessage('{"event":"command","func":"playVideo"}', '*');
+                divToBeClicked.style.display = 'none'
+            }
 
-            iframe.src = src;
+            iframe.src = `https://www.youtube.com/embed/${src}?enablejsapi=1`;
             iframe.id = id;
-            iframe.played = false;
-            iframe.titleVideo = title
             iframe.width = '100%';
             iframe.height = '400px';
 
@@ -34,20 +37,9 @@
             // return iframe;
         }
 
-        var iframe2 = createIframe('https://www.youtube.com/embed/Z711L2H_o6c?enablejsapi=1', '900', '506', 'firts-video', 'School Tour | Western Welding Academy');
-        
-        var container = document.getElementById("container-video-1")
-        var container2 = document.getElementById("divWrapped")
+        var iframe2 = createIframe('Z711L2H_o6c', '900', '506', 'firts-video', "container-video-1");
+       
 
-        const playVideo = () => {
-             var yt = document.getElementById("firts-video");
-            var player = yt.contentWindow;
-            console.log(player, 'iframe')
-            player.postMessage('{"event":"command","func":"playVideo"}', '*');
-            container2.style.display = 'none'
-        }
-        container2.onclick = playVideo
- 
 
 
     </script>
