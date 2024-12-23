@@ -3,15 +3,21 @@
     <script>
 
         function createIframe(src, width, height, id, title) {
-            var wrapperDiv = document.createElement('div');
-            var iframe = document.createElement('iframe');
+            var container = document.getElementById("container-video-1")
+
+            // CREAR DOCUMENTO
+            var divToBeClicked = document.createElement('div');
+            var iframe         = document.createElement('iframe');
+            //STYLES
             var widthDispositive = window.innerWidth; // Obtiene el ancho de la pantalla
             var aspectRatio = 16 / 9;     // Relación de aspecto 16:9
             var heightCalculated = widthDispositive / aspectRatio;
 
-            wrapperDiv.id = 'divWrapped'
-            wrapperDiv.style.width = '100%'
-            wrapperDiv.style.border = '2px solid blue'
+            divToBeClicked.id = 'divWrapped'
+            divToBeClicked.style.position = 'absolute'
+            divToBeClicked.style.backgroundColor = 'blue'
+            divToBeClicked.style.height = '400px'
+            divToBeClicked.style.width = '100%'
 
             iframe.src = src;
             iframe.id = id;
@@ -19,37 +25,29 @@
             iframe.titleVideo = title
             iframe.width = '100%';
             iframe.height = '400px';
-            wrapperDiv.appendChild(iframe);
-            return wrapperDiv;
+
+            container.appendChild(divToBeClicked);
+            container.appendChild(iframe);
+            return container;
 
 
             // return iframe;
         }
 
         var iframe2 = createIframe('https://www.youtube.com/embed/Z711L2H_o6c?enablejsapi=1', '900', '506', 'firts-video', 'School Tour | Western Welding Academy');
-        var divNew = document.createElement('div');
-        divNew.style.position = 'absolute'
-        divNew.style.backgroundColor = 'blue'
-        divNew.style.height = '400px'
-        divNew.style.width = '100%'
-
-
-        // var assignProperty = document.getElementById("div-button-2");
+        
         var container = document.getElementById("container-video-1")
-
+        var container2 = document.getElementById("divWrapped")
 
         const playVideo = () => {
              var yt = document.getElementById("firts-video");
             var player = yt.contentWindow;
             console.log(player, 'iframe')
             player.postMessage('{"event":"command","func":"playVideo"}', '*');
-            divNew.style.display = 'none'
-
-
+            container2.style.display = 'none'
         }
-        divNew.onclick = playVideo
-        // container.appendChild(divNew);
-        container.appendChild(iframe2);
+        container2.onclick = playVideo
+ 
 
 
     </script>
